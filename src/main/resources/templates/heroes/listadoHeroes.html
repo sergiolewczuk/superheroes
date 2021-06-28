@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Listado Heroes</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <section th:fragment="listadoHeroes">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div th:if="${heroes != null and !heroes.empty}">
+                                <div class="card-header">
+                                    <h4>[[#{heroes.titulo-lista}]]</h4>
+                                </div>
+
+                                <table class="table table-stryped" id="heroesTabla">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th th:text="#{heroes.nombre}">Nombre</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="heroe : ${heroes}">
+                                            <td><a class="btn btn-primary btn-xs" th:href="@{/ver/} + ${heroe.idHeroe}" th:text="${heroe.idHeroe}"></a></td>
+                                            <td>[[${heroe.nombre}]]</td>
+                                            <td>
+                                                <a th:href="@{/editar/} + ${heroe.idHeroe}" class="btn btn-secondary">
+                                                    <i class="fas fa-angle-double-right"></i> [[#{accion.editar}]]
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a th:href="@{/eliminar(idHeroe=${heroe.idHeroe})}" class="btn btn-dark">
+                                                    <i class="fas fa-angle-double-right"></i> [[#{accion.eliminar}]]
+                                                </a> 
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <nav th:replace="plantillas/paginador :: paginador"></nav>
+
+                            </div>
+                            <div class="text-center p-2" th:if="${heroes == null or heroes.empty}">
+                                <span th:text="#{heroes.lista-vacia}"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

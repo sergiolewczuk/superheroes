@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>[[${heroe.titulo.detalle.heroe}]]</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <section th:fragment="verHeroe">
+
+            <div class="container py-4">
+                <div class="card bg-light">
+                    <div class="card-header" th:text="${titulo}"></div>
+                    <div class="card-body">
+                        
+                        <img th:if="${#strings.length(heroe.imagen) > 0}" class="img-thumbnail rounded float-left" 
+                            style="max-width: 25%;" th:src="@{'/uploads/' + ${heroe.imagen}}" th:alt="${heroe.imagen}"/>
+                        
+                        <ul class="list-group">
+                            <li class="list-group-item" th:text="${heroe.nombre}"></li>
+                        </ul>
+
+                        
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </body>
+</html>

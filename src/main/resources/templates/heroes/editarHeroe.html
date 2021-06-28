@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>[[${heroe.titulo.accion.editar}]]</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <section th:fragment="editarHeroe">
+            <form th:action="@{/guardar}" th:object="${heroe}" method="POST" class="was-validated" enctype="multipart/form-data">
+                <input type="hidden" name="idHeroe" th:field="*{idHeroe}"/>
+                <div id="details">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>[[#{accion.editar}]]</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="nombre">[[#{heroes.nombre}]]</label>
+                                            <input type="text" class="form-control" name="nombre" required="true" th:field="*{nombre}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="file" th:text="#{heroes.imagen}"></label>
+                                            <input type="file" class="form-control" name="file" required="true">
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="actions" class="py-4 mb-4 bg-light">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <a th:href="@{/}" class="btn btn-light btn-block">
+                                    <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-success btn-block">
+                                    <i class="fas fa-check"></i> [[#{accion.guardar}]]
+                                </button>
+                            </div>
+                            <div class="col-md-3">
+                                <a th:href="@{/eliminar(idHeroe=${heroe.idHeroe})}" class="btn btn-danger btn-block">
+                                    <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                                </a>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </section>
+    </body>
+</html>

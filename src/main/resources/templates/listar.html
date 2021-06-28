@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head th:replace="plantillas/plantilla :: head">
+        <title>Inicio</title>
+    </head>
+    <body>        
+        <header th:replace="plantillas/plantilla :: header"></header>
+        <section th:replace="heroes/botonAgregarHeroe :: botonAgregarHeroe"></section>
+        <section th:replace="heroes/agregarHeroe :: agregarHeroe"></section>
+        <section th:replace="heroes/listadoHeroes :: listadoHeroes"></section>        
+        <section th:replace="plantillas/plantilla :: scripts"></section>             
+    </body>
+</html>
